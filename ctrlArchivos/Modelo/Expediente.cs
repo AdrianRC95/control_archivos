@@ -640,20 +640,20 @@ namespace ctrlArchivos.Modelo
                 ChkPapel.Checked = true;
                 ChkPapel.Enabled = false;
             }
-            else if (miExp.formato_Soporte.Contains("Fotografía"))
+            if (miExp.formato_Soporte.Contains("Fotografía"))
             {
                 ChkFoto.Checked = true;
-                ChkPapel.Enabled = false;
+                ChkFoto.Enabled = false;
             }
-            else if (miExp.formato_Soporte.Contains("USB"))
+            if (miExp.formato_Soporte.Contains("USB"))
             {
                 ChkUsb.Checked = true;
                 ChkUsb.Enabled = false;
             }
-            else if (miExp.formato_Soporte.Contains("Disco"))
+            if (miExp.formato_Soporte.Contains("Disco"))
             {
                 ChkDisco.Checked = true;
-                ChkUsb.Enabled = false;
+                ChkDisco.Enabled = false;
             }
             TxtFrmtoSoporte.Text = miExp.formato_Soporte;
             TxtFrmtoSoporte.Visible = true;
