@@ -21,6 +21,23 @@ function ErAgregarDatos() {
     alert("No se han podido ingresar los datos del Documento :( ");
     window.location = "/vista/expediente.aspx";
 }
+function ErActualizar() {
+    alert("No se han podido actualizar los datos :( ");
+}
+
+function noEncontrado() {
+    alert("No se encontraron datos...");
+    window.location = "/vista/expediente.aspx";
+}
+
+function datoEliminado() {
+    alert("Expediente elimado correctamente");
+    window.location = "/vista/expediente.aspx";
+}
+
+function ErEliminar() {
+    alert("Ocurrio un error, intente nuevamente");
+}
 
 function registroDocumento() {
     alert("Datos ingresados correctamente :)");
@@ -121,4 +138,3 @@ function al() {
     alert("¡Todos los campos son necesarios!");
     window.location = "/View/AltaEmpleados.aspx";
 }
-

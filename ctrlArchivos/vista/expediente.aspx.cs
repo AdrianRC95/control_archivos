@@ -357,14 +357,137 @@ namespace ctrlArchivos.vista
                     ddluadmva,
                     ddlIduadmva,
                     ddlsubuadmva,
-                    ddlidsubuadmva
-                    );
+                    ddlidsubuadmva,
+                    DdlAutorizadorExp,
+                    DdlIdAutorizadorExp,
+                    ddlcargoresp,
+                    ddlidcargoresp,
+                    DdlRespCaptura,
+                    DdlIdRespCaptura,
+                    TxtNomRespExp,
+                    TxtCargoRespExp,
+                    TxtTelRespExp,
+                    TxtEmailRespExp,
+                    TxtUnidAdmvaACargo,
+                    TxtResumen,
+                    TxtAsuntoExp,
+                    DdlFuncion,
+                    DdlAcceso,
+                    DdlValPrim,
+                    TxtFecExtIni,
+                    TxtFecExtFin,
+                    TxtNoLegajo,
+                    TxtNoFojas,
+                    RdbSiVinculado,
+                    RdbNoVinculado,
+                    DdlVincOtros,
+                    ChkPapel,
+                    ChkFoto,
+                    ChkUsb,
+                    ChkDisco,
+                    TxtFrmtoSoporte,
+                    DdlPlazoConser,
+                    DdlTipExp,
+                    DdlDestFin,
+                    DdlValSec,
+                    LblIdUbicTopog,
+                    DdlNoEd,
+                    DdlIdNoEd,
+                    TxtNomFondo,
+                    DdlNoPiso,
+                    DdlIdNoPiso,
+                    DdlNoPasillo,
+                    DdlIdNoPasillo,
+                    DdlNoEst,
+                    DdlIdNoEst,
+                    DdlNoChar,
+                    DdlIdNoChar,
+                    DdlNoCaja,
+                    DdlIdNoCaja,
+                    TxtDirFondo,
+                    TxtObsFondo,
+                    ddlidfondo,
+                    TxtFechaCaptura
+                );
             }
             else
             {
+
+                ClientScript.RegisterStartupScript(GetType(), "mostrar", "noEncontrado();", true);
                 //expediente no encontrado
             }
 
+        }
+
+        protected void btnAgregar1_Click(object sender, EventArgs e)
+        {
+            //ClientScript.RegisterStartupScript(GetType(), "mostrar", "mostrarFormularios('datos')", true);
+        }
+
+        protected void btnActualizar_Click(object sender, EventArgs e)
+        {
+            miExp.Clasificación = lblclasexp.Text;
+            miExp.idFondo = ddlidfondo.Text;
+            miExp.idseccion = ddlidseccion.Text;
+            miExp.idserie = ddlidserie.Text;
+            miExp.no_exp = int.Parse(DdlNoExp.Text);
+            miExp.año = int.Parse(ddlaño.Text);
+            miExp.id_unid_admva_resp = ddlIduadmva.Text;
+            miExp.id_area_prod = ddlidsubuadmva.Text;
+            miExp.id_resp_exp = ddlidcargoresp.Text;
+            miExp.resumen_exp = TxtResumen.Text;
+            miExp.asunto_exp = TxtAsuntoExp.Text;
+            miExp.funcion_exp = DdlFuncion.Text;
+            miExp.acceso_exp = DdlAcceso.Text;
+            miExp.val_prim_exp = DdlValPrim.Text;
+            miExp.fec_ext_ini_exp = DateTime.Parse(TxtFecExtIni.Text);
+            miExp.fec_ext_fin_exp = DateTime.Parse(TxtFecExtFin.Text);
+            miExp.no_legajo_exp = int.Parse(TxtNoLegajo.Text);
+            miExp.no_fojas_exp = int.Parse(TxtNoFojas.Text);
+            miExp.vinc_otro_exp = "Cambiar por DDL";
+            miExp.id_exp_vincd = DdlVincOtros.Text;
+            miExp.formato_Soporte = TxtFrmtoSoporte.Text;//validar que se seleccione al menos 1 o no este vacio
+            miExp.plazo_conservacion_exp = int.Parse(DdlPlazoConser.Text);
+            miExp.tipo_exp = DdlTipExp.Text;
+            miExp.destino_final_exp = DdlDestFin.Text;
+            miExp.valores_secundarios_exp = DdlValSec.Text;
+            miExp.id_ubic_topog = LblIdUbicTopog.Text;
+            miExp.IdEdificio = DdlIdNoEd.Text;
+            miExp.IdPisoEd = DdlIdNoPiso.Text;
+            miExp.IdPasillo = DdlIdNoPasillo.Text;
+            miExp.IdEstante = DdlIdNoEst.Text;
+            miExp.IdCharola = DdlIdNoChar.Text;
+            miExp.IdUnidInsCaja = DdlIdNoCaja.Text;
+            miExp.fecha_alta_exp = DateTime.Parse(TxtFechaCaptura.Text);
+            miExp.id_capturista_exp = DdlIdRespCaptura.Text;
+            miExp.id_autorizador_exp = DdlIdAutorizadorExp.Text;
+
+            int r = miExp.Actualizar();
+            
+
+            if (r == 1)
+                ClientScript.RegisterStartupScript(GetType(), "mostrar", "GuardarDatos();", true);
+            else if (r == 0)
+                ClientScript.RegisterStartupScript(GetType(), "mostrar", "ErActualizar();", true);
+            else
+                ClientScript.RegisterStartupScript(GetType(), "mostrar", "ErActualizar();", true);
+        }
+
+        protected void btnEliminar_Click(object sender, EventArgs e)
+        {
+            miExp = miExp.Buscar(lblclasexp.Text);
+            if (miExp != null)
+            {
+                int resp = miExp.Eliminar(lblclasexp.Text);
+                if (resp == 1)
+                    ClientScript.RegisterStartupScript(GetType(), "mostrar", "datoEliminado();", true);
+                else
+                    ClientScript.RegisterStartupScript(GetType(), "mostrar", "ErEliminar();", true);
+            }
+            else
+            {
+                ClientScript.RegisterStartupScript(GetType(), "mostrar", "noEncontrado();", true);
+            }            
         }
     }
 }

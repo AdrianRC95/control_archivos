@@ -2,6 +2,7 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <link href="../css/Forms.css" rel="stylesheet" type="text/css" />
     <script src="../JS/Alerts.js"></script>
+    <script src="../JS/funciones.js"></script>
     <script src="../JS/validarboton.js"></script>
 
 </asp:Content>
@@ -10,19 +11,7 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
      
     <div id="contenido">
-        <div class="MyToolBar">
-            <div class="MyButton">
-                <asp:Button ID="btnBuscar" class="btn btn-primary btn-lg btn-block" runat="server" Text="Buscar" OnClick="btnBuscar_Click" />
-            </div>
-            <div class ="MyButton">
-                <asp:Button ID="btnEliminar" class="btn btn-primary btn-lg btn-block" runat="server" Text="Eliminar" />
-            </div>
-            <div class ="MyButton">
-                <asp:Button ID="btnActualizar" class="btn btn-primary btn-lg btn-block" runat="server" Text="Actualizar" />
-            </div>
-        </div>
-        <br />
-             
+                     
         <div class="mysection">
         <asp:Label ID="lblBarraEstado" runat="server" Text="Bienvenido: escribe los datos que se indican del documento a registrar, el sistema generará automáticamente la clasificación"></asp:Label>
                  <br />
@@ -94,7 +83,14 @@
                 </asp:DropDownList>
             </div>
         </div>
-
+        <div class="MyToolBar">
+                <div class="MyButton">
+                    <asp:Button ID="btnBuscar" class="btn btn-primary btn-lg btn-block" runat="server" Text="Buscar" OnClick="btnBuscar_Click" />
+                </div>
+        </div>
+        <br />
+        
+        <div class="">
         <div class="mysection">
             <div class="mycontrol">
                 Unidad administrativa responsable:<br />
@@ -361,10 +357,16 @@
                 
             </div>
         </div>
+        </div>
         <div class="MyToolBar">
             <div class="MyButton">
-
-                <asp:Button ID="btnAgregar" class="btn btn-primary btn-lg btn-block" runat="server" Text="Agregar" OnClick="btnAgregar_Click" />
+                <asp:Button ID="btnAgregar" class="btn-primary btn-lg btn-block" runat="server" Text="Agregar" OnClick="btnAgregar_Click" />
+            </div>
+            <div class ="MyButton">
+                <asp:Button ID="btnActualizar" class="btn btn-primary btn-lg btn-block" runat="server" Text="Actualizar" OnClick="btnActualizar_Click" />
+            </div>
+            <div class ="MyButton">
+                <asp:Button ID="btnEliminar" class="btn btn-primary btn-lg btn-block" runat="server" Text="Eliminar" OnClick="btnEliminar_Click" />
             </div>
         </div>
 

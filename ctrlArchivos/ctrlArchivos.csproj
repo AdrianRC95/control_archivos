@@ -111,6 +111,7 @@
     <Content Include="Images\calendar.png" />
     <Content Include="Images\logo.png" />
     <Content Include="JS\Alerts.js" />
+    <Content Include="JS\funciones.js" />
     <Content Include="JS\HabilitarBoton.js" />
     <Content Include="JS\JQuery.js" />
     <Content Include="JS\validarboton.js" />

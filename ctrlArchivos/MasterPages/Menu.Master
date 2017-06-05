@@ -62,7 +62,7 @@
 
     </form>
     <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
-    <script src="../bootstrap/js/JQuery.js"></script>
+    <script src="../JS/JQuery.js"></script>
     <script src="../Bootstrap/js/bootstrap.min.js"></script>
 </body>
 </html>

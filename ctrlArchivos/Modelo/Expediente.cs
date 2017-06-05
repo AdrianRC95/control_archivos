@@ -117,13 +117,31 @@ namespace ctrlArchivos.Modelo
         }
         public void Genera_expediente(DropDownList DdlNoExp)
         {
-            string consulta = "SELECT COUNT(no_exp) AS totalExp FROM expediente WHERE clasificacion_exp like '"+
-                idFondo+"%'";
-            
+            /*string consulta = "SELECT COUNT(no_exp) AS totalExp FROM expediente WHERE clasificacion_exp like '"+
+                idFondo+"%'";*/
+
+
+            //Con esta consulta se pretende obtener el consecutivo del No. de expediente para generar uno nuevo
+            string consulta = "SELECT TOP 1 (no_exp + 1) AS no_exp_nuevo FROM expediente WHERE clasificacion_exp like '" +
+                idFondo + "%' ORDER BY no_exp DESC;";
+
             //obj1.cargar_TextBoxInt(txtNoExp, consulta);
-            
+
 
             int res = obj1.cargar_DropDownListInt(DdlNoExp, consulta);
+
+            if (DdlNoExp.Items.Count > 1) //Si hay elemento en la lista lo tomamos y generamos los numeros descendientes
+            {
+                int nuevo_expediente = Convert.ToInt32(DdlNoExp.Items[1].ToString()); //Tomamos el primer elemento
+                for (int i = nuevo_expediente-1; i > 0; i--)
+                {
+                    DdlNoExp.Items.Add(i.ToString());
+                }
+            }
+            else //No hay datos por lo tanto será el primer expediente
+            {
+                DdlNoExp.Items.Add("1");
+            }
 
             //if (res <= 0)//si regreso 0, significa que seria el primer exp de su tipo
             //{
@@ -352,9 +370,9 @@ namespace ctrlArchivos.Modelo
         {
             try
             {
-                
+                DdlVincOtros.Items.Clear();
                 if (RdbNoVinculado.Checked == true)
-                {   
+                {
                     DdlVincOtros.Items.Add("NINGUNO");
                     DdlVincOtros.SelectedIndex = 0;
 
@@ -395,6 +413,15 @@ namespace ctrlArchivos.Modelo
             ddlid.SelectedIndex =
                 ddlnombre.Items.IndexOf(ddlnombre.Items.FindByValue(ddlnombre.Text));
         }
+
+        //Proceso inverso de acuerdo al ID seleccionado muestra el nombre o texto correspondiente
+        public void buscarNombreCorrespondiente(DropDownList ddlnombre, DropDownList ddlid)
+        {
+            //busca la clave del DropDownList Nombre seleccionado
+            ddlnombre.SelectedIndex =
+                ddlid.Items.IndexOf(ddlid.Items.FindByValue(ddlid.Text));
+        }
+
         public void CargarUbicTopog(
             DropDownList ddlidfondo,
             DropDownList DdlNoEd, 
@@ -464,18 +491,18 @@ namespace ctrlArchivos.Modelo
         public int Guardar()
         {
             string consulta = "insert into expediente values('"
-                + Clasificación + "', '"+ idFondo + "', '"+ idseccion + "', '"+ idserie+ "',"+
-                no_exp +","+ año +", " +
-                "'"+ id_unid_admva_resp + "', '"+ id_area_prod + "', '"+ id_resp_exp + "', '"+ resumen_exp + "', '"+ asunto_exp + "','"+ funcion_exp + "', '"+ acceso_exp + "', '"+ val_prim_exp + "', " +
-                "'"+ fec_ext_ini_exp + "', '" + fec_ext_fin_exp + "', "+
+                + Clasificación + "', '" + idFondo + "', '" + idseccion + "', '" + idserie + "'," +
+                no_exp + "," + año + ", " +
+                "'" + id_unid_admva_resp + "', '" + id_area_prod + "', '" + id_resp_exp + "', '" + resumen_exp + "', '" + asunto_exp + "','" + funcion_exp + "', '" + acceso_exp + "', '" + val_prim_exp + "', " +
+                "'" + fec_ext_ini_exp.ToString("yyyy-MM-ddTHH:mm:ss.fff") + "', '" + fec_ext_fin_exp.ToString("yyyy-MM-ddTHH:mm:ss.fff") + "', "+
                 no_legajo_exp + ", " + no_fojas_exp + ", " +
                 "'no', 'NINGUNO', '"+ formato_Soporte +"', "+
                 plazo_conservacion_exp +", " +
                 "'"+ tipo_exp + "', '"+ destino_final_exp + "', '"+ valores_secundarios_exp + "', '"+ id_ubic_topog + "', "+
                 "'"+ IdEdificio + "', '"+ IdPisoEd + "', '"+ IdPasillo + "', '"+ IdEstante + "', '"+ IdCharola + "', '"+ IdUnidInsCaja + "', "+
-                "'"+ fecha_alta_exp + "', "+
+                "'"+ fecha_alta_exp.ToString("yyyy-MM-ddTHH:mm:ss.fff") + "', "+
                 "'"+ id_capturista_exp + "', '"+ id_autorizador_exp + "')";
-
+            //MessageBox.Show(consulta);
             int res = obj1.Guardar(consulta);
 
             return res;
@@ -507,13 +534,221 @@ namespace ctrlArchivos.Modelo
             DropDownList ddluadmva,
             DropDownList ddlIduadmva,
             DropDownList ddlsubuadmva,
-            DropDownList ddlidsubuadmva
+            DropDownList ddlidsubuadmva,
+            DropDownList DdlAutorizadorExp,
+            DropDownList DdlIdAutorizadorExp,
+            DropDownList ddlcargoresp,
+            DropDownList ddlidcargoresp,
+            DropDownList DdlRespCaptura,
+            DropDownList DdlIdRespCaptura,
+            System.Web.UI.WebControls.TextBox TxtNomRespExp,
+            System.Web.UI.WebControls.TextBox TxtCargoRespExp,
+            System.Web.UI.WebControls.TextBox TxtTelRespExp,
+            System.Web.UI.WebControls.TextBox TxtEmailRespExp,
+            System.Web.UI.WebControls.TextBox TxtUnidAdmvaACargo,
+            System.Web.UI.WebControls.TextBox TxtResumen,
+            System.Web.UI.WebControls.TextBox TxtAsuntoExp,
+            DropDownList DdlFuncion,
+            DropDownList DdlAcceso,
+            DropDownList DdlValPrim,
+            System.Web.UI.WebControls.TextBox TxtFecExtIni,
+            System.Web.UI.WebControls.TextBox TxtFecExtFin,
+            System.Web.UI.WebControls.TextBox TxtNoLegajo,
+            System.Web.UI.WebControls.TextBox TxtNoFojas,
+            System.Web.UI.WebControls.RadioButton RdbSiVinculado,
+            System.Web.UI.WebControls.RadioButton RdbNoVinculado,
+            DropDownList DdlVincOtros,
+            System.Web.UI.WebControls.CheckBox ChkPapel,
+            System.Web.UI.WebControls.CheckBox ChkFoto,
+            System.Web.UI.WebControls.CheckBox ChkUsb,
+            System.Web.UI.WebControls.CheckBox ChkDisco,
+            System.Web.UI.WebControls.TextBox TxtFrmtoSoporte,
+            DropDownList DdlPlazoConser,
+            DropDownList DdlTipExp,
+            DropDownList DdlDestFin,
+            DropDownList DdlValSec,
+            System.Web.UI.WebControls.Label LblIdUbicTopog,
+            DropDownList DdlNoEd,
+            DropDownList DdlIdNoEd,
+            System.Web.UI.WebControls.TextBox TxtNomFondo,
+            DropDownList DdlNoPiso,
+            DropDownList DdlIdNoPiso,
+            DropDownList DdlNoPasillo,
+            DropDownList DdlIdNoPasillo,
+            DropDownList DdlNoEst,
+            DropDownList DdlIdNoEst,
+            DropDownList DdlNoChar,
+            DropDownList DdlIdNoChar,
+            DropDownList DdlNoCaja,
+            DropDownList DdlIdNoCaja,
+            System.Web.UI.WebControls.TextBox TxtDirFondo,
+            System.Web.UI.WebControls.TextBox TxtObsFondo,
+            DropDownList ddlidfondo,
+            System.Web.UI.WebControls.TextBox TxtFechaCaptura
             )
         {
-            //ddluadmva.Text = miExp.Clasificación;
-            ddlIduadmva.Text = miExp.id_unid_admva_resp;
-            //ddlsubuadmva.Text = miExp.
-            ddlidsubuadmva.Text = miExp.id_area_prod;
+            //Unidad Administrativa Responsable
+            ddlIduadmva.Text = miExp.id_unid_admva_resp; //Seleccionr list de acuerdo a ID
+            buscarNombreCorrespondiente(ddluadmva, ddlIduadmva); //Mostrar nombre correspondiente
+            //Lennar List de datos siguiente (Area, depto...);
+            CargarUadmva(ddlIduadmva, ddluadmva,
+                ddlsubuadmva, ddlidsubuadmva,
+                DdlAutorizadorExp, DdlIdAutorizadorExp);
+
+            //Area, depto o Unidad Productora
+            ddlidsubuadmva.Text = miExp.id_area_prod; //Seleccionar list de acuerdo a ID
+            buscarNombreCorrespondiente(ddlsubuadmva, ddlidsubuadmva); //Mostrar nombre correspondiente
+            //Lennar List de datos siguiente (Nombre del responsable);
+            CargarSubUadmva(ddlIduadmva, ddlidsubuadmva,
+                ddlsubuadmva, ddlcargoresp, ddlidcargoresp,
+                DdlAutorizadorExp, DdlIdAutorizadorExp, DdlRespCaptura, DdlIdRespCaptura);
+
+            //Nombre del responsable
+            ddlidcargoresp.Text = miExp.id_resp_exp; //Seleccionar List
+            buscarNombreCorrespondiente(ddlcargoresp, ddlidcargoresp);
+            //LLenar datos del Jefe area, responsable del expediente
+            CargarDatosResp(ddlsubuadmva, ddlidcargoresp,
+                TxtNomRespExp, TxtCargoRespExp,
+                TxtTelRespExp, TxtEmailRespExp, TxtUnidAdmvaACargo);
+
+            TxtResumen.Text = miExp.resumen_exp;    //Resumen del contenido
+            TxtAsuntoExp.Text = miExp.asunto_exp;   //Asunto
+            DdlFuncion.Text = miExp.funcion_exp;    //Funcion
+            DdlAcceso.Text = miExp.acceso_exp;      //Acceso
+            DdlValPrim.Text = miExp.val_prim_exp;   //Valores primarios
+            TxtFecExtIni.Text = miExp.fec_ext_ini_exp.ToString("yyyy-MM-dd");  //Fecha extrema inicial
+            TxtFecExtFin.Text = miExp.fec_ext_fin_exp.ToString("yyyy-MM-dd");  //Fecha extrema final
+            TxtNoLegajo.Text = miExp.no_legajo_exp.ToString();  //Numero de legado
+            TxtNoFojas.Text = miExp.no_fojas_exp.ToString();    //Numero fojas
+
+            //Vinculacion con otro expediente
+            if (miExp.vinc_otro_exp == "si")
+            {
+                RdbSiVinculado.Checked = true;
+            }
+            else if (miExp.vinc_otro_exp == "no")
+            {
+                RdbNoVinculado.Checked = true;
+            }
+            CargarVincOtros(RdbSiVinculado, RdbNoVinculado, DdlVincOtros);
+            DdlVincOtros.Text = miExp.id_exp_vincd;
+            DdlVincOtros.Visible = true;
+
+            //Formato de soporte
+            if (miExp.formato_Soporte.Contains("Papel"))
+            {
+                ChkPapel.Checked = true;
+                ChkPapel.Enabled = false;
+            }
+            else if (miExp.formato_Soporte.Contains("Fotografía"))
+            {
+                ChkFoto.Checked = true;
+                ChkPapel.Enabled = false;
+            }
+            else if (miExp.formato_Soporte.Contains("USB"))
+            {
+                ChkUsb.Checked = true;
+                ChkUsb.Enabled = false;
+            }
+            else if (miExp.formato_Soporte.Contains("Disco"))
+            {
+                ChkDisco.Checked = true;
+                ChkUsb.Enabled = false;
+            }
+            TxtFrmtoSoporte.Text = miExp.formato_Soporte;
+            TxtFrmtoSoporte.Visible = true;
+
+            DdlPlazoConser.Text = miExp.plazo_conservacion_exp.ToString();  //Plazo de conservacion
+            DdlTipExp.Text = miExp.tipo_exp;                                //Tipo expediente    
+            DdlDestFin.Text = miExp.destino_final_exp;                      //Destino final
+            DdlValSec.Text = miExp.valores_secundarios_exp;                 //Valores secundarios
+
+            //Ubicación topográfica
+            LblIdUbicTopog.Text = miExp.id_ubic_topog;
+            //Número de edificio
+            DdlIdNoEd.Text = miExp.IdEdificio;
+            buscarNombreCorrespondiente(DdlNoEd, DdlIdNoEd);
+            //Cargar info piso
+            CargarPisos(DdlIdNoEd, DdlNoPiso, DdlIdNoPiso, ddlidfondo,
+                TxtNomFondo, TxtDirFondo, TxtObsFondo);
+            //Numero de piso
+            DdlIdNoPiso.Text = miExp.IdPisoEd;
+            buscarNombreCorrespondiente(DdlNoPiso, DdlIdNoPiso);
+            //Cargar pasillos
+            CargarPasillos(DdlIdNoPiso, DdlNoPasillo, DdlIdNoPasillo);
+            //Numero de pasillo
+            DdlIdNoPasillo.Text = miExp.IdPasillo;
+            buscarNombreCorrespondiente(DdlNoPasillo, DdlIdNoPasillo);
+            //Cargar Estantes
+            CargarEstantes(DdlIdNoPasillo, DdlNoEst, DdlIdNoEst);
+            //Numero estante
+            DdlIdNoEst.Text = miExp.IdEstante;
+            buscarNombreCorrespondiente(DdlNoEst, DdlIdNoEst);
+            //Cargar charolas
+            CargarCharolas(DdlIdNoEst, DdlNoChar, DdlIdNoChar);
+            //Numero charola
+            DdlIdNoChar.Text = miExp.IdCharola;
+            buscarNombreCorrespondiente(DdlNoChar, DdlIdNoChar);
+            //Cargar unidad de instalacion
+            CargarUnidCajas(DdlIdNoChar, DdlNoCaja, DdlIdNoCaja);
+            //Unidad de instalacion o numero de la caja
+            DdlIdNoCaja.Text = miExp.IdUnidInsCaja;
+            buscarNombreCorrespondiente(DdlNoCaja, DdlIdNoCaja);
+
+            //Lugar, fecha
+            TxtFechaCaptura.Text = miExp.fecha_alta_exp.ToString("yyyy-MM-dd");
+            //Capturado por
+            DdlIdRespCaptura.Text = miExp.id_capturista_exp;
+            buscarNombreCorrespondiente(DdlRespCaptura, DdlIdRespCaptura);
+            //Autorizado por
+            DdlIdAutorizadorExp.Text = miExp.id_autorizador_exp;
+            buscarNombreCorrespondiente(DdlAutorizadorExp, DdlIdAutorizadorExp);
+
+
+        }
+
+        public int Actualizar()
+        {
+            string consulta = "update expediente set "
+                + "id_unid_admva_resp='" + id_unid_admva_resp + "', "
+                + "id_area_prod='" + id_area_prod + "', "
+                + "id_resp_exp='" + id_resp_exp + "', "
+                + "resumen_exp='" + resumen_exp + "', "
+                + "asunto_exp='" + asunto_exp + "', "
+                + "funcion_exp='" + funcion_exp + "', "
+                + "acceso_exp='" + acceso_exp + "', "
+                + "val_prim_exp='" + val_prim_exp + "', "
+                + "fec_ext_ini_exp='" + fec_ext_ini_exp.ToString("yyyy-MM-ddTHH:mm:ss.fff") + "', "
+                + "fec_ext_fin_exp='" + fec_ext_fin_exp.ToString("yyyy-MM-ddTHH:mm:ss.fff") + "', "
+                + "no_legajo_exp=" + no_legajo_exp + ", "
+                + "no_fojas_exp=" + no_fojas_exp + ", "
+                + "vinc_otro_exp='no', id_exp_vincd='NINGUNO', "
+                + "formato_soporte='" + formato_Soporte + "', "
+                + "plazo_conservacion_exp=" + plazo_conservacion_exp + ", "
+                + "tipo_exp='" + tipo_exp + "', "
+                + "destino_final_exp='" + destino_final_exp + "', "
+                + "valores_secundarios_exp='" + valores_secundarios_exp + "', "
+                + "id_ubic_topog='" + id_ubic_topog + "', "
+                + "IdEdificio='" + IdEdificio + "', "
+                + "IdPisoEd='" + IdPisoEd + "', "
+                + "IdPasillo='" + IdPasillo + "', "
+                + "IdEstante='" + IdEstante + "', "
+                + "IdCharola='" + IdCharola + "', "
+                + "IdUnidInsCaja='" + IdUnidInsCaja + "', "
+                + "fecha_alta_exp='" + fecha_alta_exp.ToString("yyyy-MM-ddTHH:mm:ss.fff") + "', "
+                + "id_capturista_exp='" + id_capturista_exp + "', "
+                + "id_autorizador_exp='" + id_autorizador_exp + "' "
+                + "where clasificacion_exp='" + Clasificación + "'";
+            //MessageBox.Show(consulta);
+            int res = obj1.Guardar(consulta);
+            return res;
+        }
+
+        public int Eliminar(String id_expediente)
+        {
+            String consulta = "DELETE FROM expediente WHERE clasificacion_exp='" + id_expediente + "';";
+            int res = obj1.Guardar(consulta);
+            return res;
         }
 
 
