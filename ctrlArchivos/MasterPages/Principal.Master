@@ -1,0 +1,150 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Principal.master.cs" Inherits="MPlastic.MaterPages.Principal" %>
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title></title>
+    <asp:ContentPlaceHolder ID="head" runat="server">
+
+    </asp:ContentPlaceHolder>
+
+    <link href="../Bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="../css/Principal.css" rel="stylesheet" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+</head>
+<body>
+
+    
+<header>
+        <nav class="navbar navbar-inverse navbar-static-top " role="navigation">
+            <div class="container">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navegacion-chente">
+                        <span class="sr-only">Desplegar /ocultar menu</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a href="#" class="navbar-brand"><img id="borderImg" style="max-width:100px; margin-top: -7px;" src="../Images/logo.png" class="logo"/></a>
+
+                </div>
+
+              <!--  inicia Menu -->
+                <div class="collapse navbar-collapse" id="navegacion-chente">
+                    <ul class="nav navbar-nav">
+                        <li class="active"> <a href="../View/Inicio.aspx">Inicio</a>
+
+                        </li>
+                         <li class=""> <a href="#">Nuevo Registro   <span class="caret"></span></a>
+                             <ul>
+                                 <li class="hija"><a href="../View/AltaObrero.aspx">Persona</a></li>
+                                 <li class="hija"><a href="../View/AltaProducto.aspx">Producto</a></li>
+
+                             </ul>
+                         </li>
+
+                         <li class=""> <a href="#">Bajas  <span class="caret"></span></a>
+                             <ul>
+                                 <li class="hija"><a href="../View/BajaObreros.aspx">Obrero</a></li>
+                                 <li class="hija"><a href="../View/BajaProducto.aspx">Producto</a></li>
+
+                             </ul>
+
+                         </li>
+                         <li class="">  <a href="#">Modificaciones  <span class="caret"></span></a>
+                             <ul>
+                                 <li><a href="../View/ModificarPersona.aspx">Persona</a></li>
+                                 <li><a href="../View/ModificarProducto.aspx">Producto</a></li>
+
+                             </ul>
+                         </li>
+                        <li class="">  <a href="#">Consultar <span class="caret"></span> </a>
+                             <ul>
+                                 <li><a href="../View/GestionObreros.aspx">Gestion de obreros</a></li>
+                                 <li><a href="../View/GestionProducto.aspx">Gestion de productos</a></li>
+
+                             </ul>
+                         </li>
+
+                        <!--  dropdown inicia   
+
+                        <li class="dropdown">
+                            <a href="../Vista/Nosotros.aspx" class="dropdown-toggle" data-toggle="dropdown" role="button">
+                                Practicas <span class="caret"></span>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a href="#">Porcentajes</a></li>
+                                <li><a href="#">Figuras</a></li>
+                                <li><a href="#">Citas</a></li>
+                                <li><a href="#">Computadoras</a></li>
+                                 <li><a href="#">Empleados</a></li>
+                            </ul>
+
+                        </li>
+                         <!--  dropdown  termina -->
+                    </ul>
+                    <form action="#" class="navbar-form navbar-right" role="search">
+                        <div class="form-group">
+                            <input type="text" class="form-control" placeholder="buscar"/>
+                        </div>
+                        <button type="submit" class="btn btn-primary">
+                            <span class="glyphicon glyphicon-search"></span>
+
+                        </button>
+
+                    </form>
+
+                </div>
+
+            </div>
+
+        </nav>
+</header>
+
+    <!-- inicia la etiqueta section -->
+   <!-- <section class="jumbotron">
+        <div class="container">
+            <h1 class="text-center">Matesa Plastic</h1>
+            <p class="text-center">Plsticos de ingenieria</p>
+
+        </div>
+
+    </section>
+    <!-- Termina la etiqueta section -->
+
+    <form id="form1" runat="server">
+    <section id="MainContent">
+        <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+        
+        </asp:ContentPlaceHolder>
+    </section>
+    </form>
+    
+   
+   <!-- <footer class="footer"> 
+        <div class="row">
+            <div class="col-xs-6">
+                <p id="dr">Matesa Plastic Marca Registrada</p>
+            </div>
+            <div class="col-xs-6">
+                <ul class="list-inline text-right" >
+                    <li><a href="#">Inicio</a></li>
+                </ul>
+                
+            </div>
+
+        </div>
+        
+    </footer>-->
+   
+
+
+
+    
+
+    <script src="../bootstrap/js/JQuery.js"></script>
+    <script src="../Bootstrap/js/bootstrap.min.js"></script>
+</body>
+</html>

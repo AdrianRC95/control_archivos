@@ -1,0 +1,232 @@
+.contenedor-menu .btn-menu{
+    display: flexbox;
+    width: 70%;
+    padding: 15px 30px;
+    background: #252932;
+    color: #fff;
+    min-width: 430px;
+    position: fixed;
+    z-index: 2000;
+
+  }
+  .contenedor-menu .btn-menu .icono.izquierda{
+    float: left;
+    margin-left: -5px;
+    margin-right: 20px; 
+  }
+
+/*--------------------------------------------------------------------*/
+a{
+  color: #fff;
+}
+
+.contenedor-menu{
+  width: 60%;
+  z-index: 1000;
+  padding-top: 81px;
+  min-width: 500px; 
+  float: left;
+}
+.contenedor-menu ul{
+  list-style: none;
+}
+.contenedor-menu .menu{
+  width: 100%;
+  z-index: 1000;
+  position: fixed;
+  min-width: 430px;
+  padding-top: 50px;
+  display: flexbox;
+  flex-direction:column;
+  
+}
+.contenedor-menu .menu li a{
+  display: block;
+  padding: 15px 30px;
+  background: #252932;
+}
+.contenedor-menu .menu li ul li a .icono.izquierda{
+  margin-left: 15px;
+}
+.contenedor-menu .menu li ul li ul li a .icono.izquierda{
+  margin-left: 20px;
+}
+.contenedor-menu .menu li ul li ul li a{
+  padding: 15px 25px;
+}
+.contenedor-menu .menu li a:hover{
+  background: #E6344A;
+}
+.contenedor-menu .menu .icono{
+  font-size: 12px;
+  line-height: 18px;
+}
+.contenedor-menu .menu .icono.izquierda{
+  float: left;
+  margin-left: -5px;
+  margin-right: 55px; 
+}
+.contenedor-menu .menu .icono.derecha{
+  float: right;
+  margin-left: 10px;
+  margin-right: 10px;
+}
+.contenedor-menu .menu ul{
+  display: none;
+}
+
+/*Cuando mi menú crezca más de los 1027px, se mostrará
+el menú a su tamaño de escritorio*/
+@media screen and (min-width: 1028px){
+  .contenedor-menu .btn-menu{
+    display: none;
+  }
+  .contenedor-menu .menu{
+    -webkit-transition: all .5s linear;
+    -o-transition: all .5s linear;
+    transition: all .5s linear;
+  }
+  *{
+    margin: 0;
+    padding: 0;
+    text-decoration: none;
+    list-style: none;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+  }
+  .contenedor-menu{
+    width: 100%;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    /*FLEX*/
+    display: flexbox;
+    
+  }
+  .contenedor-menu .menu{
+    padding-top: 0;
+    right: 0;
+    width: 100%;
+    z-index: 1001;
+    position: fixed;
+    /*Flex*/
+    display: flexbox;
+    
+    flex-direction:row;
+    
+  }
+  .contenedor-menu .menu > li{
+    display: inline-block;
+    position: relative;
+    float: left;
+    background: #252932;
+  }
+  .contenedor-menu .menu li a{
+    color: #fff;
+    display: block;
+    padding: 15px;
+  }
+  .contenedor-menu .menu .icono{
+    font-size: 16px;
+    line-height: 18px;
+  }
+  .contenedor-menu .menu .icono.izquierda{
+   float: left;
+    margin-right: 20px;
+  }
+  .contenedor-menu .menu .icono.derecha{
+    float: right;
+    margin-left: 20px;
+  }
+  /*Primer Nivel*/
+  .contenedor-menu .menu li:hover{
+    background: #E6344A;
+  }/*Segundo Nivel*/
+
+  .contenedor-menu .menu li:hover > ul{
+    display: block;
+  }
+  .contenedor-menu .menu li ul{
+    display: none;
+    position: absolute;
+    width: 100%;
+    background: #252932;
+    z-index: 1000;
+    margin-left: 0;
+  }
+  .contenedor-menu .menu li ul li{
+    border-top: 1px solid rgba(255,255,255,.5);
+    display: block;
+    border-left: 1px solid rgba(255,255,255,.5);
+  }
+
+  .contenedor-menu .menu li li{
+    overflow: hidden;
+    -webkit-transition: all .5s ease;
+    -o-transition: all .5s ease;
+    transition: all .5s ease;
+  }
+  .contenedor-menu .menu > li > ul > li > ul{
+    top: 0;
+    left: 100%;
+  }
+  /*Tercer Nivel*/
+  .contenedor-menu .menu li:hover > ul > ul{
+    overflow: visible;
+    position: absolute;
+    max-height: 1000px;
+  }
+  .contenedor-menu .menu ul ul ul{
+    left: 100%;
+    top: 100%;
+  }
+  .contenedor-menu .menu li ul li > ul.b{
+    top: 34%;
+  }
+    .contenedor-menu .menu li ul li > ul.b1{
+    top: 67%;
+
+  }
+
+  .contenedor-menu .menu li ul li > ul.b2{
+      top:51%;
+  }
+  .contenedor-menu .menu li ul li ul li a {
+    font-size: 14px;
+  } 
+  .contenedor-menu .menu li ul li ul li a .icono.izquierda{
+    margin-left: -10px;
+  }
+  .contenedor-menu .menu li ul li ul{
+    width: 95%;
+  }
+}
+/*A partir de los 1200px para abajo mi menú abarcará 
+un 70% de del contenedor al mismo tiempo que una 
+transición se ejecutará para animar el acoplamiento*/
+@media screen and (max-width: 1200px) {
+    .contenedor-menu .menu {
+        width: 70%;
+    }
+
+    .modif {
+        clear: both;
+    }
+
+    .contenedor-menu .menu {
+        -webkit-transition: all 1s linear;
+        -o-transition: all 1s linear;
+        transition: all 1s linear;
+    }
+}
+    /*Cuando el menú pasé de los 950px para arriba, regresará
+a su posición normal "center" pero con esta transición*/
+    @media screen and (min-width: 950px) {
+
+        .contenedor-menu .menu {
+            -webkit-transition: all .5s linear;
+            -o-transition: all .5s linear;
+            transition: all .5s linear;
+        }
+    }

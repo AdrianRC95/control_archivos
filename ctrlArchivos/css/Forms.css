@@ -1,0 +1,142 @@
+﻿div#contenido {
+    margin: 10px, auto, 10px, auto;   
+    padding: 10px;
+}
+
+div.container {
+    margin-top: 40px;
+}
+
+div.mylogin {
+    
+    height: 15em;
+    width: 15em;
+
+    position: center;
+    text-align:center;
+    
+    margin: 5px 5px 5px 5px;
+    padding: 5px;
+    
+    background-color: #F2F1EE;
+    border: 1px solid #666;
+    border-radius: 10px;
+}
+
+div#id,#contra,#mybutton {
+    margin-top: 1em;
+}
+
+
+div.mysection, .mysubsection{
+    margin-left: 5px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    margin-right: 5px;
+    padding: 5px;
+    float: left;
+    background-color: #F2F1EE;
+    border: 1px solid #666;
+    border-radius: 10px;
+}
+
+div.MyToolBar {
+    margin-left: 5px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    margin-right: 5px;
+    padding: 5px;
+    float: left;
+    width:99%;
+    background-color: #F2F1EE;
+    border: 1px solid #666;
+    border-radius: 10px;
+    text-align:center;
+}
+
+div.MyButton {
+    margin-left: 5px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    margin-right: 5px;
+    padding: 5px;
+    float: left;
+    background-color: #F2F1EE;
+    border: 1px solid #666;
+    border-radius: 10px;
+    width:inherit;
+}
+
+div.mycontrol {
+    height: 120px;
+    margin-left: 5px;
+    margin-bottom: 5px;
+    margin-top: 5px;
+    float: left;
+    padding: 5px;
+    background-color: #F2F1EE;
+    border: 1px solid #666;
+    border-radius: 10px;
+}
+
+div.mycontrolLong {
+    height: 180px;
+    margin-left: 5px;
+    margin-bottom: 5px;
+    margin-top: 5px;
+    float: left;
+    padding: 5px;
+    background-color: #F2F1EE;
+    border: 1px solid #666;
+    border-radius: 10px;
+}
+
+div.myctrlXLong {
+    height: 300px;
+    margin-left: 5px;
+    margin-bottom: 5px;
+    margin-top: 5px;
+    float: left;
+    padding: 5px;
+    background-color: #F2F1EE;
+    border: 1px solid #666;
+    border-radius: 10px;
+}
+
+
+div#selec {
+    position: absolute;
+}
+
+button#buscar {
+    margin-left: 50%;
+    margin-top: 20px;
+}
+
+button#buscar_obr {
+    margin-left: 100%;
+}
+
+div#eliminar {
+    margin-top: 40px;
+    width: 30%;
+    margin-left: 35%;
+    padding: 20px;
+    padding-left: 40px;
+}
+
+div#consulta1 {
+    width: 40%;
+    margin-left: 30%;
+    padding-left: 40px;
+    padding-right: 40px;
+}
+
+div#marca {
+    position: absolute;
+}
+
+button#buscar2 {
+    margin-top: 20px;
+    margin-left: 50%;
+}

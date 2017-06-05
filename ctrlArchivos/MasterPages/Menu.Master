@@ -1,0 +1,68 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Menu.master.cs" Inherits="MPlastic.MaterPages.Menu" %>
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title></title>
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+    <link href="../Bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
+    <script type="text/javascript" src="http://code.jquery.com/jquery.min.js"></script>
+
+</head>
+<body>
+    <form id="form1"  runat="server" method="post">
+    <div >
+            <nav role="navigation" class="navbar navbar-inverse">
+                <div class="navbar-header">
+                    <button type="button" data-target="#navbarCollapse" data-toggle="collapse" class="navbar-toggle">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+
+                    <a href="#" class="navbar-brand">Archivo Digital</a>
+                </div>
+                <div id="navbarCollapse" class="collapse navbar-collapse">
+                    <ul class=" nav navbar-nav">
+
+                        <li class="active">
+                            <a href="../vista/inicio.aspx">Inicio</a>
+                        </li>
+
+                        <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Nuevo Registro <span class="caret"></span></a>
+                            <ul role="menu" class="dropdown-menu">
+                                <li><a href="../vista/documento.aspx">Documento</a></li>
+                                <li><a href="../vista/expediente.aspx">Expediente</a></li>
+                                <li><a href="../vista/ubictopo.aspx">Ubicación topográfica</a></li>
+                            </ul>
+                        </li>
+                        
+                        <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Consultas<span class="caret"></span> </a>
+                            <ul role="menu" class="dropdown-menu">
+                                <li><a href="../vista/documento.aspx">Documento</a></li>
+                                <li><a href="../vista/expediente.aspx">Expediente</a></li>
+                                <li><a href="../vista/ubictopo.aspx">Ubicación topográfica</a></li>
+                           </ul>
+                        </li>
+
+                    </ul>
+                </div>
+            </nav>
+    </div>
+        <section>
+            <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+            </asp:ContentPlaceHolder>
+        </section>
+
+    </form>
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+    <script src="../bootstrap/js/JQuery.js"></script>
+    <script src="../Bootstrap/js/bootstrap.min.js"></script>
+</body>
+</html>

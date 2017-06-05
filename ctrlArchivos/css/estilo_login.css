@@ -1,0 +1,112 @@
+﻿ body
+{
+    /*background: #265a88;*/
+    background:#CC0000;
+}
+
+h1{
+  color:#cccccc;
+  font-family: 'Open Sans', Arial, sans-serif;
+  /*padding-top:1em;*/
+  margin-left:170px;
+}
+
+h2{
+  color:#cccccc;
+  font-family: 'Open Sans', Arial, sans-serif;
+  /*padding-top:1em;*/
+  margin-left:230px;
+}
+#logologin {
+    margin-left:110px;
+}
+
+div.login{
+    width: 600px;
+    height: 400px;
+    margin-left: 360px;
+    margin-top:50px;
+}
+
+div#id
+{
+    margin-left:130px;
+    margin-top:1em;
+}
+div#contra{
+    margin-left:130px;
+
+}
+
+
+
+span
+{
+    background-color: #363b41;
+    border-radius: 3px 0px 0px 3px;
+    color: #606468;
+    display: block;
+    float: left;
+    height: 50px;
+    line-height: 50px;
+    text-align: center;
+    width: 50px;
+}
+
+ [class*="fontawesome-"]:before {
+    font-family: 'FontAwesome', sans-serif;
+}
+
+.fontawesome-user:before {
+    content: "\f007";
+}
+
+
+.fontawesome-lock:before {
+    content: "\f023";
+}
+
+
+input[type="text"], input[type="password"] {
+    background-color: #3b4148;
+    border-radius: 0px 3px 3px 0px;
+    color: #ffffff;
+    margin-bottom: 1em;
+    padding: 0 16px;
+    width: 230px;
+}
+
+ input {
+    border: none;
+    height: 50px;
+    font-family: 'Open Sans', Arial, sans-serif;
+    font-size: 14px;
+    line-height: 1.5em;
+    padding: 0;
+    -webkit-appearance: none;
+}
+
+
+ input[type="submit"] {
+    background: #085D81;
+    border-radius: 7px;
+    color: #fff;
+    cursor: pointer;
+    display: inline-block;
+    opacity: 0.8;
+    width: 314px;
+    margin-left:130px;
+}
+
+
+
+input[type="submit"]:hover
+{
+    background: #e63900;
+    
+}
+
+input[type="submit"]:active
+{
+    transform: scale(0.95);
+}
