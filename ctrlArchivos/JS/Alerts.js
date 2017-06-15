@@ -27,7 +27,7 @@ function ErActualizar() {
 
 function noEncontrado() {
     alert("No se encontraron datos...");
-    window.location = "/vista/expediente.aspx";
+    //window.location = "/vista/expediente.aspx";
 }
 
 function datoEliminado() {
@@ -137,4 +137,13 @@ function bn2() {
 function al() {
     alert("¡Todos los campos son necesarios!");
     window.location = "/View/AltaEmpleados.aspx";
+}
+
+function msgCorrecto(mensaje, location) {
+    alert(mensaje);
+    window.location = location;
+}
+
+function msgError(mensaje) {
+    alert(mensaje);
 }

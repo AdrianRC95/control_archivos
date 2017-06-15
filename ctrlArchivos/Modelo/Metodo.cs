@@ -73,6 +73,7 @@ namespace ctrlArchivos.Modelo
         }
         public int Guardar(string consulta)
         {
+            //MessageBox.Show(consulta);
             SqlCommand Comando;
             Datos inserta = new Datos();
             int regresa = 0;
@@ -492,5 +493,62 @@ namespace ctrlArchivos.Modelo
                 return 0;
         }
 
+        /**
+         * Con esta funcion se pretende hacer genérica la busqueda de datos.
+         * Realiza la consulta y guarda los datos en un array ordenado de strings,
+         * validando y cambiando algunos tipos de datos para evitar conflictos,
+         * de esta manera en el controlador solo se recogen datos genericos que no dependen
+         * de ninguna clase, solo se debe hacer la conversion al tipo de dato correspondiente.
+         * */
+        public string[] Buscar(string consulta)
+        {
+            Datos selecciona = new Datos();
+            SqlDataReader lector;
+            string[] datos = null;
+            if (selecciona.Conectar())
+            {
+                selecciona.construye_reader(consulta);
+                lector = selecciona.ejecuta_reader();
+
+                if (lector.Read() == true)//verifica que el data reader tengan datos aunque sean null
+                {
+                    do
+                    {
+                        if (!(lector.IsDBNull(0))) //verifica que no sean datos null
+                        {
+                            datos = new string[lector.FieldCount];
+                            for (int i = 0; i < lector.FieldCount; i++)
+                            {
+                                //Verificamos que tipo de dato devuelve la consulta y lo convertimos a string
+                                //Agregar tipos de datos de acuerdo a las necesidades.
+                                if (lector[i] is string)
+                                {
+                                    datos[i] = lector.GetString(i);
+                                }
+                                else if (lector[i] is int)
+                                {
+                                    datos[i] = lector.GetInt32(i).ToString();
+                                }
+                                else if (lector[i] is DateTime)
+                                {
+                                    datos[i] = lector.GetDateTime(i).ToString();
+                                }
+                            }
+                        }
+                    } while (lector.Read());
+                    selecciona.desconectar();
+                    selecciona.dr.Close();
+
+                    return datos;
+                }
+                else
+                {
+                    return datos;
+                }
+
+            }
+            else
+                return datos;
+        }
     }
 }

@@ -12,7 +12,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
     <script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
     <script type="text/javascript" src="http://code.jquery.com/jquery.min.js"></script>
-
 </head>
 <body>
     <form id="form1"  runat="server" method="post">
@@ -39,6 +38,7 @@
                             <ul role="menu" class="dropdown-menu">
                                 <li><a href="../vista/documento.aspx">Documento</a></li>
                                 <li><a href="../vista/expediente.aspx">Expediente</a></li>
+                                <li><a href="../vista/usuario.aspx">Usuario</a></li>
                                 <li><a href="../vista/ubictopo.aspx">Ubicación topográfica</a></li>
                             </ul>
                         </li>
@@ -47,6 +47,7 @@
                             <ul role="menu" class="dropdown-menu">
                                 <li><a href="../vista/documento.aspx">Documento</a></li>
                                 <li><a href="../vista/expediente.aspx">Expediente</a></li>
+                                <li><a href="../vista/usuario.aspx">Usuario</a></li>
                                 <li><a href="../vista/ubictopo.aspx">Ubicación topográfica</a></li>
                            </ul>
                         </li>

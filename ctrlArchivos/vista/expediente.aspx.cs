@@ -51,6 +51,8 @@ namespace ctrlArchivos.vista
                 miExp.inicioDeshabilitar(
                     TxtFrmtoSoporte
                     );
+                btnActualizar.Visible = false;
+                btnEliminar.Visible = false;
             }
             
 
@@ -99,7 +101,7 @@ namespace ctrlArchivos.vista
             int r = miExp.Guardar();
             
             if (r == 1)
-                ClientScript.RegisterStartupScript(GetType(), "mostrar", "GuardarDatos();", true);
+                ClientScript.RegisterStartupScript(GetType(), "mostrar", "msgCorrecto('Datos ingresados correctamente :)', '/vista/expediente.aspx');", true);
             else if (r == 0)
                 ClientScript.RegisterStartupScript(GetType(), "mostrar", "ErAgregar();", true);
             else
@@ -114,16 +116,16 @@ namespace ctrlArchivos.vista
             //busca la clave del fondo seleccionado
             miExp.buscarIdCorrespondiente(ddlfondo, ddlidfondo);
             miExp.CargarUbicTopog(ddlidfondo, DdlNoEd, DdlIdNoEd);
-            
-            lblclasexp.Text = ddlidfondo.Text;
 
             //recupera el fondo y genera el numero del ultimo expediente y otro mas
             miExp.idFondo = ddlidfondo.Text;
             miExp.Genera_expediente(DdlNoExp);
             ddlfondo.Focus();
 
-            //inicia la generacion de la clave de la ubicacion topografica del expediente
-            LblIdUbicTopog.Text = ddlidfondo.Text + "-";
+            //inicia la generacion de la clave de clasificacion y ubicacion topografica del expediente
+            //LblIdUbicTopog.Text = ddlidfondo.Text + "-";
+            lblclasexp.Text = miExp.generaClasificacion(ddlidfondo.Text, ddlidseccion.Text, ddlidserie.Text, DdlNoExp.Text, ddlaño.Text);
+            LblIdUbicTopog.Text = miExp.generaUbicacionTopog(ddlidfondo.Text, DdlIdNoEd.Text, DdlIdNoPiso.Text, DdlIdNoPasillo.Text, DdlIdNoEst.Text, DdlIdNoChar.Text, DdlIdNoCaja.Text);
         }
 
         protected void ddlseccion_SelectedIndexChanged(object sender, EventArgs e)
@@ -131,12 +133,13 @@ namespace ctrlArchivos.vista
             //busca la clave del fondo seleccionado
             miExp.buscarIdCorrespondiente(ddlseccion, ddlidseccion);
            
-            lblclasexp.Text += "-" + ddlidseccion.Text;
+            //lblclasexp.Text += "-" + ddlidseccion.Text;
 
             miExp.CargarSeccion(ddlserie, ddlidseccion, ddlidserie);
 
             ddlseccion.Focus();
 
+            lblclasexp.Text = miExp.generaClasificacion(ddlidfondo.Text, ddlidseccion.Text, ddlidserie.Text, DdlNoExp.Text, ddlaño.Text);
         }
 
         protected void ddlserie_SelectedIndexChanged(object sender, EventArgs e)
@@ -144,14 +147,23 @@ namespace ctrlArchivos.vista
             //busca la clave de la serie seleccionada
             miExp.buscarIdCorrespondiente(ddlserie, ddlidserie);
             
-            lblclasexp.Text += "-" + ddlidserie.Text;
+            //lblclasexp.Text += "-" + ddlidserie.Text;
             ddlserie.Focus();
+
+            lblclasexp.Text = miExp.generaClasificacion(ddlidfondo.Text, ddlidseccion.Text, ddlidserie.Text, DdlNoExp.Text, ddlaño.Text);
+        }
+
+        protected void DdlNoExp_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            DdlNoExp.Focus();
+            lblclasexp.Text = miExp.generaClasificacion(ddlidfondo.Text, ddlidseccion.Text, ddlidserie.Text, DdlNoExp.Text, ddlaño.Text);
         }
 
         protected void ddlaño_SelectedIndexChanged(object sender, EventArgs e)
         {
-            lblclasexp.Text += "-" +DdlNoExp.Text + "-" + ddlaño.Text;
+            //lblclasexp.Text += "-" +DdlNoExp.Text + "-" + ddlaño.Text;
             ddlaño.Focus();
+            lblclasexp.Text = miExp.generaClasificacion(ddlidfondo.Text, ddlidseccion.Text, ddlidserie.Text, DdlNoExp.Text, ddlaño.Text);
         }
 
         protected void ddluadmva_SelectedIndexChanged(object sender, EventArgs e)
@@ -300,47 +312,53 @@ namespace ctrlArchivos.vista
             miExp.buscarIdCorrespondiente(DdlNoEd, DdlIdNoEd);
             miExp.CargarPisos(DdlIdNoEd, DdlNoPiso, DdlIdNoPiso, ddlidfondo,
                 TxtNomFondo, TxtDirFondo, TxtObsFondo);
-            LblIdUbicTopog.Text += DdlIdNoEd.Text + "-";
+            //LblIdUbicTopog.Text += DdlIdNoEd.Text + "-";
             DdlNoEd.Focus();
+            LblIdUbicTopog.Text = miExp.generaUbicacionTopog(ddlidfondo.Text, DdlIdNoEd.Text, DdlIdNoPiso.Text, DdlIdNoPasillo.Text, DdlIdNoEst.Text, DdlIdNoChar.Text, DdlIdNoCaja.Text);
         }
 
         protected void DdlNoPiso_SelectedIndexChanged(object sender, EventArgs e)
         {
             miExp.buscarIdCorrespondiente(DdlNoPiso, DdlIdNoPiso);
             miExp.CargarPasillos(DdlIdNoPiso, DdlNoPasillo, DdlIdNoPasillo);
-            LblIdUbicTopog.Text += DdlIdNoPiso.Text + "-";
+            //LblIdUbicTopog.Text += DdlIdNoPiso.Text + "-";
             DdlNoPiso.Focus();
+            LblIdUbicTopog.Text = miExp.generaUbicacionTopog(ddlidfondo.Text, DdlIdNoEd.Text, DdlIdNoPiso.Text, DdlIdNoPasillo.Text, DdlIdNoEst.Text, DdlIdNoChar.Text, DdlIdNoCaja.Text);
         }
 
         protected void DdlNoPasillo_SelectedIndexChanged(object sender, EventArgs e)
         {
             miExp.buscarIdCorrespondiente(DdlNoPasillo, DdlIdNoPasillo);
             miExp.CargarEstantes(DdlIdNoPasillo, DdlNoEst, DdlIdNoEst);
-            LblIdUbicTopog.Text += DdlIdNoPasillo.Text + "-";
+            //LblIdUbicTopog.Text += DdlIdNoPasillo.Text + "-";
             DdlIdNoPasillo.Focus();
+            LblIdUbicTopog.Text = miExp.generaUbicacionTopog(ddlidfondo.Text, DdlIdNoEd.Text, DdlIdNoPiso.Text, DdlIdNoPasillo.Text, DdlIdNoEst.Text, DdlIdNoChar.Text, DdlIdNoCaja.Text);
         }
 
         protected void DdlNoEst_SelectedIndexChanged(object sender, EventArgs e)
         {
             miExp.buscarIdCorrespondiente(DdlNoEst, DdlIdNoEst);
             miExp.CargarCharolas(DdlIdNoEst, DdlNoChar, DdlIdNoChar);
-            LblIdUbicTopog.Text += DdlIdNoEst.Text + "-";
+            //LblIdUbicTopog.Text += DdlIdNoEst.Text + "-";
             DdlIdNoEst.Focus();
+            LblIdUbicTopog.Text = miExp.generaUbicacionTopog(ddlidfondo.Text, DdlIdNoEd.Text, DdlIdNoPiso.Text, DdlIdNoPasillo.Text, DdlIdNoEst.Text, DdlIdNoChar.Text, DdlIdNoCaja.Text);
         }
 
         protected void DdlNoChar_SelectedIndexChanged(object sender, EventArgs e)
         {
             miExp.buscarIdCorrespondiente(DdlNoChar, DdlIdNoChar);
             miExp.CargarUnidCajas(DdlIdNoChar, DdlNoCaja, DdlIdNoCaja);
-            LblIdUbicTopog.Text += DdlIdNoChar.Text + "-";
+            //LblIdUbicTopog.Text += DdlIdNoChar.Text + "-";
             DdlNoChar.Focus();
+            LblIdUbicTopog.Text = miExp.generaUbicacionTopog(ddlidfondo.Text, DdlIdNoEd.Text, DdlIdNoPiso.Text, DdlIdNoPasillo.Text, DdlIdNoEst.Text, DdlIdNoChar.Text, DdlIdNoCaja.Text);
         }
 
         protected void DdlNoCaja_SelectedIndexChanged(object sender, EventArgs e)
         {
             miExp.buscarIdCorrespondiente(DdlNoCaja, DdlIdNoCaja);
-            LblIdUbicTopog.Text += DdlIdNoCaja.Text;
+            //LblIdUbicTopog.Text += DdlIdNoCaja.Text;
             DdlNoChar.Focus();
+            LblIdUbicTopog.Text = miExp.generaUbicacionTopog(ddlidfondo.Text, DdlIdNoEd.Text, DdlIdNoPiso.Text, DdlIdNoPasillo.Text, DdlIdNoEst.Text, DdlIdNoChar.Text, DdlIdNoCaja.Text);
         }
 
         protected void btnBuscar_Click(object sender, EventArgs e)
@@ -409,6 +427,9 @@ namespace ctrlArchivos.vista
                     ddlidfondo,
                     TxtFechaCaptura
                 );
+                btnAgregar.Visible = false;
+                btnActualizar.Visible = true;
+                btnEliminar.Visible = true;
             }
             else
             {

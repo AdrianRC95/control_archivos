@@ -73,7 +73,7 @@
             <div class="mycontrol">
                 No. de expediente:<br />
                 
-                <asp:DropDownList ID="DdlNoExp" class="form-control" runat="server" AutoPostBack="True">
+                <asp:DropDownList ID="DdlNoExp" class="form-control" runat="server" AutoPostBack="True" OnSelectedIndexChanged="DdlNoExp_SelectedIndexChanged">
                 </asp:DropDownList>
             </div>
             
@@ -84,7 +84,9 @@
             </div>
         </div>
         <div class="MyToolBar">
-                <div class="MyButton">
+            
+        <input type="checkbox" onclick="mostrar_ocultar('BuscarExpediente')"/><label>Opciones</label>
+                <div class="MyButton ocultar" id="BuscarExpediente">
                     <asp:Button ID="btnBuscar" class="btn btn-primary btn-lg btn-block" runat="server" Text="Buscar" OnClick="btnBuscar_Click" />
                 </div>
         </div>

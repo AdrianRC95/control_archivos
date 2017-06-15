@@ -141,9 +141,12 @@
     <Content Include="vista\expediente.aspx" />
     <Content Include="vista\documento.aspx" />
     <Content Include="vista\Inicio.aspx" />
+    <Content Include="vista\Usuario.aspx" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controlador\ctrlUsuario.cs" />
+    <Compile Include="Controlador\ctrlDocumento.cs" />
     <Compile Include="Login.aspx.cs">
       <DependentUpon>Login.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -166,11 +169,12 @@
       <DependentUpon>Principal.Master</DependentUpon>
     </Compile>
     <Compile Include="Modelo\cargarWebFormExpediente.cs" />
-    <Compile Include="Modelo\documento.cs" />
+    <Compile Include="Modelo\Documento.cs" />
     <Compile Include="Modelo\Expediente.cs" />
     <Compile Include="Modelo\servidor.cs" />
     <Compile Include="Modelo\Datos.cs" />
     <Compile Include="Modelo\Metodo.cs" />
+    <Compile Include="Modelo\Usuario.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="vista\expediente.aspx.cs">
       <DependentUpon>expediente.aspx</DependentUpon>
@@ -192,6 +196,13 @@
     </Compile>
     <Compile Include="vista\Inicio.aspx.designer.cs">
       <DependentUpon>Inicio.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="vista\Usuario.aspx.cs">
+      <DependentUpon>Usuario.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="vista\Usuario.aspx.designer.cs">
+      <DependentUpon>Usuario.aspx</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>

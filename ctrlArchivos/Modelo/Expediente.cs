@@ -751,7 +751,34 @@ namespace ctrlArchivos.Modelo
             return res;
         }
 
+        /**
+         * Con este método se corrige la forma de generar la clasficacion y ubicacion topologica
+         * Para utilizarlo adecuadamente se debe asignar el atributo que se modifica en el formulario
+         * a esta entidad y posteriormente obtener la nueva clasificacion
+         * */
+        public string generaClasificacion(string fondo, string seccion, string serie, string numero, string anio)
+        {
+            string n_clasificacion = "";
+            n_clasificacion += fondo + "-";
+            n_clasificacion += seccion + "-";
+            n_clasificacion += serie + "-";
+            n_clasificacion += numero + "-";
+            n_clasificacion += anio;
+            return n_clasificacion;
+        }
 
+        public string generaUbicacionTopog(string fondo, string edificio, string piso, string pasillo, string estante, string charola, string caja)
+        {
+            string topologica = "";
+            topologica += fondo + "-";
+            topologica += edificio + "-";
+            topologica += piso + "-";
+            topologica += pasillo + "-";
+            topologica += estante + "-";
+            topologica += charola + "-";
+            topologica += caja;
+            return topologica;
+        }
     }
 
 //    Public Class clsTools
