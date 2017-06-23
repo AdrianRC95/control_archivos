@@ -141,7 +141,10 @@
     <Content Include="vista\expediente.aspx" />
     <Content Include="vista\documento.aspx" />
     <Content Include="vista\Inicio.aspx" />
+    <Content Include="vista\m_documento.aspx" />
+    <Content Include="vista\m_expediente.aspx" />
     <Content Include="vista\Usuario.aspx" />
+    <Content Include="vista\m_usuario.aspx" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
@@ -197,12 +200,33 @@
     <Compile Include="vista\Inicio.aspx.designer.cs">
       <DependentUpon>Inicio.aspx</DependentUpon>
     </Compile>
+    <Compile Include="vista\m_documento.aspx.cs">
+      <DependentUpon>m_documento.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="vista\m_documento.aspx.designer.cs">
+      <DependentUpon>m_documento.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="vista\m_expediente.aspx.cs">
+      <DependentUpon>m_expediente.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="vista\m_expediente.aspx.designer.cs">
+      <DependentUpon>m_expediente.aspx</DependentUpon>
+    </Compile>
     <Compile Include="vista\Usuario.aspx.cs">
       <DependentUpon>Usuario.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="vista\Usuario.aspx.designer.cs">
       <DependentUpon>Usuario.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="vista\m_usuario.aspx.cs">
+      <DependentUpon>m_usuario.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="vista\m_usuario.aspx.designer.cs">
+      <DependentUpon>m_usuario.aspx</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>

@@ -72,7 +72,7 @@ namespace ctrlArchivos.Controlador
                 && txtContrasenia.Text != "" && txtConfirmaContrasenia.Text != "" && ddlTipoUsuario.SelectedIndex != 0
                 && txtTelefono.Text != "" && txtCargo.Text != "" && ddlIdUnidadAdm.SelectedIndex != 0)
             {
-                if(txtEmail.Text == txtConfirmaEmail.Text)
+                if (txtEmail.Text == txtConfirmaEmail.Text)
                 {
                     if (txtContrasenia.Text == txtConfirmaContrasenia.Text)
                     {
@@ -115,7 +115,7 @@ namespace ctrlArchivos.Controlador
 
         public bool buscarUsuario(string idUsuario, ref string mensaje)
         {
-            if(idUsuario != "")
+            if (idUsuario != "")
             {
                 bool resp = usuario.Buscar(idUsuario);
                 if (resp)
@@ -130,7 +130,7 @@ namespace ctrlArchivos.Controlador
                 return false;
             }
         }
-        
+
         public void cargarDatosUsuario(System.Web.UI.WebControls.TextBox txtIdUsuario,
                                    System.Web.UI.WebControls.TextBox txtNombre,
                                    System.Web.UI.WebControls.TextBox txtNombreCom,
@@ -156,7 +156,7 @@ namespace ctrlArchivos.Controlador
             txtCargo.Text = usuario.nombre_cargo;
             ddlIdUnidadAdm.Text = usuario.id_unid_admva_pertenece;
             buscarNombreCorrespondiente(ddlUnidadAdm, ddlIdUnidadAdm);
-            
+
         }
 
         public int ActualizarUsuario(System.Web.UI.WebControls.TextBox txtIdUsuario,
@@ -232,6 +232,69 @@ namespace ctrlArchivos.Controlador
             {
                 mensaje = "Ingresar ID de usuario";
                 return 0;
+            }
+        }
+
+        /**
+         * Accedemos al modelo para traer los datos y mostrarlos en la tabla correspondiente
+         */
+        public void enlistarDatos(Table datos)
+        {
+            TableHeaderRow header;
+            TableRow row;
+            TableCell celda;
+
+            header = new TableHeaderRow();
+            celda = new TableCell();
+            celda.Text = "ID Usuario";
+            header.Cells.Add(celda);
+            celda = new TableCell();
+            celda.Text = "Usuario";
+            header.Cells.Add(celda);
+            celda = new TableCell();
+            celda.Text = "Nombre";
+            header.Cells.Add(celda);
+            celda = new TableCell();
+            celda.Text = "Email";
+            header.Cells.Add(celda);
+            celda = new TableCell();
+            celda.Text = "Confirmación Email";
+            header.Cells.Add(celda);
+            celda = new TableCell();
+            celda.Text = "Contraseña";
+            header.Cells.Add(celda);
+            celda = new TableCell();
+            celda.Text = "Confirmación Contraseña";
+            header.Cells.Add(celda);
+            celda = new TableCell();
+            celda.Text = "Tipo Usuario";
+            header.Cells.Add(celda);
+            celda = new TableCell();
+            celda.Text = "Teléfono";
+            header.Cells.Add(celda);
+            celda = new TableCell();
+            celda.Text = "Cargo";
+            header.Cells.Add(celda);
+            celda = new TableCell();
+            celda.Text = "Unidad Administrativa";
+            header.Cells.Add(celda);
+            datos.Rows.Add(header);
+            List<string[]> valores = usuario.consultaAgregados();
+            if(valores!= null)
+            {
+                for (int i = 0; i < valores.Count; i++)
+                {
+                    row = new TableRow();
+                    string[] fila_val = valores[i];
+                    
+                    for (int j = 0; j < fila_val.Length; j++)
+                    {
+                        celda = new TableCell();
+                        celda.Text = fila_val[j];
+                        row.Cells.Add(celda);
+                    }
+                    datos.Rows.Add(row);
+                }
             }
         }
 

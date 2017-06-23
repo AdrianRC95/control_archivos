@@ -52,6 +52,18 @@
                            </ul>
                         </li>
 
+                        <!-- menu de mostrar datos agregados -->
+                         <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Mostrar <span class="caret"></span></a>
+                           <ul role="menu" class="dropdown-menu">
+                                <li><a href="../vista/m_documento.aspx">Documento</a></li>
+                                <li><a href="../vista/m_expediente.aspx">Expediente</a></li>
+                                <li><a href="../vista/m_usuario.aspx">Usuario</a></li>
+                                <li><a href="../vista/m_ubictopo.aspx">Ubicación topográfica</a></li>
+                           </ul>
+                        </li>
+
+
+
                     </ul>
                 </div>
             </nav>

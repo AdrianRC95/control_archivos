@@ -102,5 +102,12 @@ namespace ctrlArchivos.Modelo
             int res = obj.Guardar(consulta);
             return res;
         }
+
+        public List<string[]> consultaAgregados()
+        {
+            string consulta = "select * from usuario";
+            List<string[]> datos = obj.buscarVarios(consulta);
+            return datos;
+        }
     }
 }

@@ -703,8 +703,6 @@ namespace ctrlArchivos.Modelo
             //Autorizado por
             DdlIdAutorizadorExp.Text = miExp.id_autorizador_exp;
             buscarNombreCorrespondiente(DdlAutorizadorExp, DdlIdAutorizadorExp);
-
-
         }
 
         public int Actualizar()
@@ -778,6 +776,143 @@ namespace ctrlArchivos.Modelo
             topologica += charola + "-";
             topologica += caja;
             return topologica;
+        }
+
+        /**
+         * En este caso se coloca el método en este lugar debido a que se sigue la estructura 
+         * con la que se trabajo anteriormente
+         */ 
+        public void enlistarDatos(Table datos)
+        {
+            TableHeaderRow header;
+            TableRow row;
+            TableCell celda;
+
+            header = new TableHeaderRow();
+            celda = new TableCell();
+            celda.Text = "Clasificación";
+            header.Cells.Add(celda);
+            celda = new TableCell();
+            celda.Text = "Fondo";
+            header.Cells.Add(celda);
+            celda = new TableCell();
+            celda.Text = "Seccion";
+            header.Cells.Add(celda);
+            celda = new TableCell();
+            celda.Text = "Serie";
+            header.Cells.Add(celda);
+            celda = new TableCell();
+            celda.Text = "Numero";
+            header.Cells.Add(celda);
+            celda = new TableCell();
+            celda.Text = "Año";
+            header.Cells.Add(celda);
+            celda = new TableCell();
+            celda.Text = "Unidad Administrativa";
+            header.Cells.Add(celda);
+            celda = new TableCell();
+            celda.Text = "Area Productiva";
+            header.Cells.Add(celda);
+            celda = new TableCell();
+            celda.Text = "Responsable";
+            header.Cells.Add(celda);
+            celda = new TableCell();
+            celda.Text = "Resumen";
+            header.Cells.Add(celda);
+            celda = new TableCell();
+            celda.Text = "Asunto";
+            header.Cells.Add(celda);
+            celda = new TableCell();
+            celda.Text = "Funcion";
+            header.Cells.Add(celda);
+            celda = new TableCell();
+            celda.Text = "Acceso";
+            header.Cells.Add(celda);
+            celda = new TableCell();
+            celda.Text = "Valor primario";
+            header.Cells.Add(celda);
+            celda = new TableCell();
+            celda.Text = "Fecha Inicio";
+            header.Cells.Add(celda);
+            celda = new TableCell();
+            celda.Text = "Fecha Fin";
+            header.Cells.Add(celda);
+            celda = new TableCell();
+            celda.Text = "No. Legado";
+            header.Cells.Add(celda);
+            celda = new TableCell();
+            celda.Text = "No. Fojas";
+            header.Cells.Add(celda);
+            celda = new TableCell();
+            celda.Text = "Vinculado";
+            header.Cells.Add(celda);
+            celda = new TableCell();
+            celda.Text = "Exp. Vinculado";
+            header.Cells.Add(celda);
+            celda = new TableCell();
+            celda.Text = "Formato Soporte";
+            header.Cells.Add(celda);
+            celda = new TableCell();
+            celda.Text = "Plazo conservación";
+            header.Cells.Add(celda);
+            celda = new TableCell();
+            celda.Text = "Tipo";
+            header.Cells.Add(celda);
+            celda = new TableCell();
+            celda.Text = "Destino";
+            header.Cells.Add(celda);
+            celda = new TableCell();
+            celda.Text = "Valores Secundarios";
+            header.Cells.Add(celda);
+            celda = new TableCell();
+            celda.Text = "Ubicación Topológica";
+            header.Cells.Add(celda);
+            celda = new TableCell();
+            celda.Text = "Edificio";
+            header.Cells.Add(celda);
+            celda = new TableCell();
+            celda.Text = "Piso";
+            header.Cells.Add(celda);
+            celda = new TableCell();
+            celda.Text = "Pasillo";
+            header.Cells.Add(celda);
+            celda = new TableCell();
+            celda.Text = "Estante";
+            header.Cells.Add(celda);
+            celda = new TableCell();
+            celda.Text = "Charola";
+            header.Cells.Add(celda);
+            celda = new TableCell();
+            celda.Text = "Caja";
+            header.Cells.Add(celda);
+            celda = new TableCell();
+            celda.Text = "Fecha Alta";
+            header.Cells.Add(celda);
+            celda = new TableCell();
+            celda.Text = "Capturista";
+            header.Cells.Add(celda);
+            celda = new TableCell();
+            celda.Text = "Autorizador";
+            header.Cells.Add(celda);
+            datos.Rows.Add(header);
+            string consulta = "select * from expediente";
+            List<string[]> valores = obj1.buscarVarios(consulta);
+            if (valores != null)
+            {
+                for (int i = 0; i < valores.Count; i++)
+                {
+                    row = new TableRow();
+                    string[] fila_val = valores[i];
+
+                    for (int j = 0; j < fila_val.Length; j++)
+                    {
+                        celda = new TableCell();
+                        celda.Text = fila_val[j];
+                        row.Cells.Add(celda);
+                    }
+                    datos.Rows.Add(row);
+                }
+            }
         }
     }
 

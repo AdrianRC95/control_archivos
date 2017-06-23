@@ -550,5 +550,63 @@ namespace ctrlArchivos.Modelo
             else
                 return datos;
         }
+
+        /**
+         * Con esta funcion se realiza una busqueda que devuelve varios registros,
+         * ordenandolos en una lista que incluye un array de datos para que el objeto realice
+         * las operaciones correspodientes con la informacion devuelta
+         * */
+        public List<string[]> buscarVarios(string consulta)
+        {
+            Datos selecciona = new Datos();
+            SqlDataReader lector;
+            List<string[]> datos = new List<string[]>();
+            if (selecciona.Conectar())
+            {
+                selecciona.construye_reader(consulta);
+                lector = selecciona.ejecuta_reader();
+
+                if (lector.Read() == true)//verifica que el data reader tengan datos aunque sean null
+                {
+                    do
+                    {
+                        string[] valores = null;
+                        if (!(lector.IsDBNull(0))) //verifica que no sean datos null
+                        {
+                            valores = new string[lector.FieldCount];
+                            for (int i = 0; i < lector.FieldCount; i++)
+                            {
+                                //Verificamos que tipo de dato devuelve la consulta y lo convertimos a string
+                                //Agregar tipos de datos de acuerdo a las necesidades.
+                                if (lector[i] is string)
+                                {
+                                    valores[i] = lector.GetString(i);
+                                }
+                                else if (lector[i] is int)
+                                {
+                                    valores[i] = lector.GetInt32(i).ToString();
+                                }
+                                else if (lector[i] is DateTime)
+                                {
+                                    valores[i] = lector.GetDateTime(i).ToString();
+                                }
+                            }
+                            datos.Add(valores);
+                        }
+                    } while (lector.Read());
+                    selecciona.desconectar();
+                    selecciona.dr.Close();
+
+                    return datos;
+                }
+                else
+                {
+                    return datos;
+                }
+
+            }
+            else
+                return datos;
+        }
     }
 }

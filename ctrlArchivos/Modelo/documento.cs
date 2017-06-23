@@ -133,5 +133,17 @@ namespace ctrlArchivos.Modelo
             int res = obj.Guardar(consulta);
             return res;
         }
+
+        /**
+         * Hacemos uso del método buscar varios en Metodo.cs
+         * Utiliza como parámetro la consulta para devolver los datos
+         * Retorna una lista de array con los datos generados
+         */
+        public List<string[]> consultaAgregados()
+        {
+            string consulta = "select * from documento";
+            List<string[]> datos = obj.buscarVarios(consulta);
+            return datos;
+        }
     }
 }
