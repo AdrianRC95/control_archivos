@@ -60,53 +60,66 @@ namespace ctrlArchivos.vista
 
         protected void btnAgregar_Click(object sender, EventArgs e)
         {
-          
+            if (lblclasexp.Text != "" && ddlidfondo.SelectedIndex != 0 && ddlidseccion.SelectedIndex != 0 && ddlidserie.SelectedIndex != 0
+               && DdlNoExp.SelectedIndex != 0 && ddlaño.SelectedIndex != 0 && ddlIduadmva.SelectedIndex != 0 && ddlidsubuadmva.SelectedIndex != 0
+               && ddlidcargoresp.SelectedIndex != 0 && TxtResumen.Text != "" && TxtAsuntoExp.Text != "" && DdlFuncion.SelectedIndex != 0
+               && DdlAcceso.SelectedIndex != 0 && DdlValPrim.SelectedIndex != 0 && TxtFecExtIni.Text != "" && TxtFecExtFin.Text != ""
+               && TxtNoLegajo.Text != "" && TxtNoFojas.Text != "" && DdlVincOtros.Text != "" && TxtFrmtoSoporte.Text != ""
+               && DdlPlazoConser.SelectedIndex != 0 && DdlTipExp.SelectedIndex != 0 && DdlDestFin.SelectedIndex != 0
+               && DdlValSec.SelectedIndex != 0 && LblIdUbicTopog.Text != "" && DdlIdNoEd.SelectedIndex != 0 && DdlIdNoPiso.SelectedIndex != 0
+               && DdlNoPasillo.SelectedIndex != 0 && DdlIdNoEst.SelectedIndex != 0 && DdlIdNoChar.SelectedIndex != 0 && DdlIdNoCaja.SelectedIndex != 0
+               && TxtFechaCaptura.Text != "" && DdlIdRespCaptura.SelectedIndex != 0 && DdlIdAutorizadorExp.SelectedIndex != 0)
+            {
+                miExp.Clasificación = lblclasexp.Text;
+                miExp.idFondo = ddlidfondo.Text;
+                miExp.idseccion = ddlidseccion.Text;
+                miExp.idserie = ddlidserie.Text;
+                miExp.no_exp = int.Parse(DdlNoExp.Text);
+                miExp.año = int.Parse(ddlaño.Text);
+                miExp.id_unid_admva_resp = ddlIduadmva.Text;
+                miExp.id_area_prod = ddlidsubuadmva.Text;
+                miExp.id_resp_exp = ddlidcargoresp.Text;
+                miExp.resumen_exp = TxtResumen.Text;
+                miExp.asunto_exp = TxtAsuntoExp.Text;
+                miExp.funcion_exp = DdlFuncion.Text;
+                miExp.acceso_exp = DdlAcceso.Text;
+                miExp.val_prim_exp = DdlValPrim.Text;
+                miExp.fec_ext_ini_exp = DateTime.Parse(TxtFecExtIni.Text);
+                miExp.fec_ext_fin_exp = DateTime.Parse(TxtFecExtFin.Text);
+                miExp.no_legajo_exp = int.Parse(TxtNoLegajo.Text);
+                miExp.no_fojas_exp = int.Parse(TxtNoFojas.Text);
+                miExp.vinc_otro_exp = "Cambiar por DDL";
+                miExp.id_exp_vincd = DdlVincOtros.Text;
+                miExp.formato_Soporte = TxtFrmtoSoporte.Text;//validar que se seleccione al menos 1 o no este vacio
+                miExp.plazo_conservacion_exp = int.Parse(DdlPlazoConser.Text);
+                miExp.tipo_exp = DdlTipExp.Text;
+                miExp.destino_final_exp = DdlDestFin.Text;
+                miExp.valores_secundarios_exp = DdlValSec.Text;
+                miExp.id_ubic_topog = LblIdUbicTopog.Text;
+                miExp.IdEdificio = DdlIdNoEd.Text;
+                miExp.IdPisoEd = DdlIdNoPiso.Text;
+                miExp.IdPasillo = DdlIdNoPasillo.Text;
+                miExp.IdEstante = DdlIdNoEst.Text;
+                miExp.IdCharola = DdlIdNoChar.Text;
+                miExp.IdUnidInsCaja = DdlIdNoCaja.Text;
+                miExp.fecha_alta_exp = DateTime.Parse(TxtFechaCaptura.Text);
+                miExp.id_capturista_exp = DdlIdRespCaptura.Text;
+                miExp.id_autorizador_exp = DdlIdAutorizadorExp.Text;
 
-            miExp.Clasificación = lblclasexp.Text;
-            miExp.idFondo = ddlidfondo.Text;
-            miExp.idseccion = ddlidseccion.Text;
-            miExp.idserie = ddlidserie.Text;
-            miExp.no_exp = int.Parse(DdlNoExp.Text);
-            miExp.año = int.Parse(ddlaño.Text);
-            miExp.id_unid_admva_resp = ddlIduadmva.Text;
-            miExp.id_area_prod = ddlidsubuadmva.Text;
-            miExp.id_resp_exp = ddlidcargoresp.Text;
-            miExp.resumen_exp = TxtResumen.Text;
-            miExp.asunto_exp = TxtAsuntoExp.Text;
-            miExp.funcion_exp = DdlFuncion.Text;
-            miExp.acceso_exp = DdlAcceso.Text;
-            miExp.val_prim_exp = DdlValPrim.Text;
-            miExp.fec_ext_ini_exp = DateTime.Parse(TxtFecExtIni.Text);
-            miExp.fec_ext_fin_exp = DateTime.Parse(TxtFecExtFin.Text);
-            miExp.no_legajo_exp = int.Parse(TxtNoLegajo.Text);
-            miExp.no_fojas_exp = int.Parse(TxtNoFojas.Text);
-            miExp.vinc_otro_exp = "Cambiar por DDL";
-            miExp.id_exp_vincd = DdlVincOtros.Text;
-            miExp.formato_Soporte = TxtFrmtoSoporte.Text;//validar que se seleccione al menos 1 o no este vacio
-            miExp.plazo_conservacion_exp = int.Parse(DdlPlazoConser.Text);
-            miExp.tipo_exp = DdlTipExp.Text;
-            miExp.destino_final_exp = DdlDestFin.Text;
-            miExp.valores_secundarios_exp = DdlValSec.Text;
-            miExp.id_ubic_topog = LblIdUbicTopog.Text;
-            miExp.IdEdificio = DdlIdNoEd.Text;
-            miExp.IdPisoEd = DdlIdNoPiso.Text;
-            miExp.IdPasillo = DdlIdNoPasillo.Text;
-            miExp.IdEstante = DdlIdNoEst.Text;
-            miExp.IdCharola = DdlIdNoChar.Text;
-            miExp.IdUnidInsCaja = DdlIdNoCaja.Text;
-            miExp.fecha_alta_exp = DateTime.Parse(TxtFechaCaptura.Text);
-            miExp.id_capturista_exp = DdlIdRespCaptura.Text;
-            miExp.id_autorizador_exp = DdlIdAutorizadorExp.Text;
+                int r = miExp.Guardar();
 
-            int r = miExp.Guardar();
-            
-            if (r == 1)
-                ClientScript.RegisterStartupScript(GetType(), "mostrar", "msgCorrecto('Datos ingresados correctamente :)', '/vista/expediente.aspx');", true);
-            else if (r == 0)
-                ClientScript.RegisterStartupScript(GetType(), "mostrar", "ErAgregar();", true);
+                if (r == 1)
+                    ClientScript.RegisterStartupScript(GetType(), "mostrar", "msgCorrecto('Datos ingresados correctamente :)', '/vista/expediente.aspx');", true);
+                else if (r == 0)
+                    ClientScript.RegisterStartupScript(GetType(), "mostrar", "ErAgregar();", true);
+                else
+                    ClientScript.RegisterStartupScript(GetType(), "mostrar", "ErAgregar();", true);
+            }
             else
-                ClientScript.RegisterStartupScript(GetType(), "mostrar", "ErAgregar();", true);
-            
+            {
+                ClientScript.RegisterStartupScript(GetType(), "mostar", "msgError('Llenar todos los campos');", true);
+            }
+
         }
 
         protected void ddlfondo_SelectedIndexChanged(object sender, EventArgs e)

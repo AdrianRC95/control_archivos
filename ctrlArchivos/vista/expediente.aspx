@@ -244,7 +244,7 @@
 
             <div class="mycontrol">
                 Nombre del edificio:<br />
-                <asp:TextBox ID="TxtNomFondo" class="form-control" runat="server"></asp:TextBox>
+                <asp:TextBox ID="TxtNomFondo" class="form-control" runat="server" TextMode="SingleLine"></asp:TextBox>
             </div>
 
             <div class="mycontrol">
@@ -288,7 +288,7 @@
             
             <div class="mycontrol">
                     Domicilio de la oficina donde esta el archivo:<br />
-                    <asp:TextBox ID="TxtDirFondo"  class="form-control" runat="server"></asp:TextBox>
+                    <asp:TextBox ID="TxtDirFondo"  class="form-control" runat="server" TextMode="SingleLine"></asp:TextBox>
             </div>
 
             <div class="mycontrol">

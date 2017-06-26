@@ -62,7 +62,7 @@
             <div class="mycontrol">
                 Número de documento
                 <br/>
-                <asp:TextBox ID="txtNumero" class="form-control" runat="server"></asp:TextBox>
+                <asp:TextBox ID="txtNumero" class="form-control" runat="server" TextMode="Number"></asp:TextBox>
    
             </div>
 
@@ -123,7 +123,7 @@
             <div class="mycontrol">
                 Número de fojas del documento
                 <br/>
-                <asp:TextBox ID="txtNumFojas" runat="server" class="form-control" TextMode="MultiLine"></asp:TextBox>
+                <asp:TextBox ID="txtNumFojas" runat="server" class="form-control" TextMode="Number"></asp:TextBox>
             </div>
 
         </div>

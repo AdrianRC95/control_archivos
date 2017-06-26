@@ -172,6 +172,7 @@
       <DependentUpon>Principal.Master</DependentUpon>
     </Compile>
     <Compile Include="Modelo\cargarWebFormExpediente.cs" />
+    <Compile Include="Modelo\des_encripta.cs" />
     <Compile Include="Modelo\Documento.cs" />
     <Compile Include="Modelo\Expediente.cs" />
     <Compile Include="Modelo\servidor.cs" />

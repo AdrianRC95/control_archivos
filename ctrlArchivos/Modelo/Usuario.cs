@@ -18,8 +18,9 @@ namespace ctrlArchivos.Modelo
         public string telefono { set; get; }
         public string nombre_cargo { set; get; }
         public string id_unid_admva_pertenece  { set; get; }
-
+        private string clave = "usuario";
         Usuario2 obj = new Usuario2();
+        des_encripta encripta = new des_encripta();
 
         public Usuario()
         {
@@ -48,7 +49,9 @@ namespace ctrlArchivos.Modelo
         {
             string consulta = "INSERT INTO usuario VALUES('" + this.id_usuario + "'," +
                 "'" + this.nombre + "','" + this.nombre_com + "','" + this.email + "'," +
-                "'" + this.confirmar_email + "','" + this.contrasenia + "','" + this.confirmar_contrasenia + "'," +
+                "'" + this.confirmar_email + "'," +
+                "'" + encripta.Encriptar(this.contrasenia, clave) + "'," +
+                "'" + encripta.Encriptar(this.confirmar_contrasenia, clave) + "'," +
                 "'" + this.tipo_usuario + "','" + this.telefono + "'," +
                 "'" + this.nombre_cargo + "','" + this.id_unid_admva_pertenece + "')";
             int res = obj.Guardar(consulta);
@@ -66,8 +69,8 @@ namespace ctrlArchivos.Modelo
                 this.nombre_com = datos[2];
                 this.email = datos[3];
                 this.confirmar_email = datos[4];
-                this.contrasenia = datos[5];
-                this.confirmar_contrasenia = datos[6];
+                this.contrasenia = encripta.Desencriptar(datos[5], clave);
+                this.confirmar_contrasenia = encripta.Desencriptar(datos[6], clave);
                 this.tipo_usuario = datos[7];
                 this.telefono = datos[8];
                 this.nombre_cargo = datos[9];
@@ -85,8 +88,8 @@ namespace ctrlArchivos.Modelo
                 "nom_com_usr='" + this.nombre_com + "', " +
                 "email_usr='" + this.email + "', " +
                 "confirmaemail_usr='" + this.confirmar_email + "', " +
-                "contra_usr='" + this.contrasenia + "', " +
-                "confirmacontra_usr='" + this.confirmar_contrasenia + "', " +
+                "contra_usr='" + encripta.Encriptar(this.contrasenia, clave) + "', " +
+                "confirmacontra_usr='" + encripta.Encriptar(this.confirmar_contrasenia, clave) + "', " +
                 "tipo_usr='" + this.tipo_usuario + "', " +
                 "telefono_contacto='" + this.telefono + "', " +
                 "nom_cargo_usr='" + this.nombre_cargo + "', " +

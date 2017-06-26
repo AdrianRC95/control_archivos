@@ -41,14 +41,14 @@
             <div class="mycontrol">
                 Email:
                 <br/>
-                <asp:TextBox ID="txtEmail" class="form-control" runat="server">
+                <asp:TextBox ID="txtEmail" class="form-control" runat="server" TextMode="Email">
                 </asp:TextBox>
             </div>
 
             <div class="mycontrol">
                 Confirmar Email:
                 <br/>
-                <asp:TextBox ID="txtConfirmaEmail" class="form-control" runat="server">
+                <asp:TextBox ID="txtConfirmaEmail" class="form-control" runat="server" TextMode="Email">
                 </asp:TextBox>
             </div>
 
