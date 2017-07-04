@@ -6,6 +6,12 @@
         <h1>Expediente </h1>
         <div class="mysection">
             <h2>Generales del expediente</h2>
+            <p>
+                <label>Exportar: </label>
+                <asp:ImageButton id="exportExcel" OnClick="exportExcel_Click" runat="server" ImageUrl="~/Images/excel.png" />
+                <asp:ImageButton id="exportPdf" OnClick="exportPdf_Click" runat="server" ImageUrl="~/Images/pdf.png" />
+                <img src="../Images/printer.png" id="print" onclick="window.print()" />
+            </p>
             <div class="table-responsive">
                 <asp:Table id="datos" class="table table-hover" runat="server">
                 </asp:Table>

@@ -43,6 +43,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="itextsharp">
+      <HintPath>..\..\..\..\..\Desktop\itextsharp.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.AI.Agent.Intercept, Version=2.0.6.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.ApplicationInsights.Agent.Intercept.2.0.6\lib\net45\Microsoft.AI.Agent.Intercept.dll</HintPath>
       <Private>True</Private>
@@ -109,7 +112,10 @@
     <Content Include="css\Forms.css" />
     <Content Include="css\Principal.css" />
     <Content Include="Images\calendar.png" />
+    <Content Include="Images\excel.png" />
     <Content Include="Images\logo.png" />
+    <Content Include="Images\pdf.png" />
+    <Content Include="Images\printer.png" />
     <Content Include="JS\Alerts.js" />
     <Content Include="JS\funciones.js" />
     <Content Include="JS\HabilitarBoton.js" />
@@ -175,6 +181,7 @@
     <Compile Include="Modelo\des_encripta.cs" />
     <Compile Include="Modelo\Documento.cs" />
     <Compile Include="Modelo\Expediente.cs" />
+    <Compile Include="Modelo\Imprimir.cs" />
     <Compile Include="Modelo\servidor.cs" />
     <Compile Include="Modelo\Datos.cs" />
     <Compile Include="Modelo\Metodo.cs" />
