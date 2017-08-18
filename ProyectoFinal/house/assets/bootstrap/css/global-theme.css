@@ -1,0 +1,26 @@
+.btn-foco {
+    color: #101010;
+}
+.btn-foco i{
+    color: #fff500;
+    font-size: 10em;
+}
+.btn-foco i.low{
+    color: #101010;
+    font-size: 10em;
+}
+.btn-foco span {
+    font-size: 1.6em;
+    text-align: center;
+}
+
+.btn-puerta {
+    color: #101010;
+}
+.btn-puerta .hidden {
+    display: none;
+}
+.btn-puerta span {
+    font-size: 1.6em;
+    text-align: center;
+}

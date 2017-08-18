@@ -1,0 +1,15 @@
+.login_background {
+    background: url(../img/smart_home.png) no-repeat center center fixed !important;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+
+.login_form {
+    background-color: rgb(0, 146, 213) !important;
+}
+
+.login_form a{
+    color: rgb(248, 248, 255) !important;
+}
